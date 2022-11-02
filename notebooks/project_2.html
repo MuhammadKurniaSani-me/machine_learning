@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Proyek 2 Data Supervised dan Unsupervised Learning 🎯 &#8212; Machine Learning Project</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Proyek 1 Pengenalan Data 🎯" href="project_1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning Project</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Selamat Datang 👋
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/machine_learning.html">
+   🤖📚 Machine Learning
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Project
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="project_1.html">
+   Proyek 1 Pengenalan Data 🎯
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Proyek 2 Data Supervised dan Unsupervised Learning 🎯
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/MuhammadKurniaSani-me/machine_learning/gh-pages?urlpath=tree/_sources/notebooks/project_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/MuhammadKurniaSani-me/machine_learning/blob/gh-pages/_sources/notebooks/project_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/MuhammadKurniaSani-me/machine_learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/MuhammadKurniaSani-me/machine_learning/issues/new?title=Issue%20on%20page%20%2Fnotebooks/project_2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/project_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objective">
+   Objective 📝
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perkenalan">
+     Perkenalan
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-kontinyu">
+       Data Kontinyu
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-diskrit">
+       Data Diskrit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cake-analogy">
+       Cake Analogy
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised">
+     Supervised 🧮💻
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algoritma-supervised-learning">
+       Algoritma supervised learning
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#linear-regression">
+         Linear Regression
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#logistic-regression">
+         Logistic Regression
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#classification">
+         Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#decision-trees">
+         Decision Trees
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#support-vector-machines">
+         Support Vector Machines
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#neural-networks">
+         Neural Networks
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supervised-classification">
+       Supervised : Classification
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#binary-classification">
+         Binary Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#multiclass-classification">
+         Multiclass Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#decision-tree">
+         Decision Tree
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#latihan-sklearn-decision-tree">
+       Latihan SKLearn Decision Tree 💪💻
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Proyek 2 Data Supervised dan Unsupervised Learning 🎯</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objective">
+   Objective 📝
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perkenalan">
+     Perkenalan
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-kontinyu">
+       Data Kontinyu
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-diskrit">
+       Data Diskrit
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cake-analogy">
+       Cake Analogy
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised">
+     Supervised 🧮💻
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algoritma-supervised-learning">
+       Algoritma supervised learning
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#linear-regression">
+         Linear Regression
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#logistic-regression">
+         Logistic Regression
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#classification">
+         Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#decision-trees">
+         Decision Trees
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#support-vector-machines">
+         Support Vector Machines
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#neural-networks">
+         Neural Networks
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supervised-classification">
+       Supervised : Classification
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#binary-classification">
+         Binary Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#multiclass-classification">
+         Multiclass Classification
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#decision-tree">
+         Decision Tree
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#latihan-sklearn-decision-tree">
+       Latihan SKLearn Decision Tree 💪💻
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="proyek-2-data-supervised-dan-unsupervised-learning">
+<h1>Proyek 2 Data Supervised dan Unsupervised Learning 🎯<a class="headerlink" href="#proyek-2-data-supervised-dan-unsupervised-learning" title="Permalink to this headline">#</a></h1>
+<section id="objective">
+<h2>Objective 📝<a class="headerlink" href="#objective" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Perkenalan</p></li>
+<li><p>Supervised</p></li>
+<li><p>Unsupervised</p></li>
+</ul>
+<section id="perkenalan">
+<h3>Perkenalan<a class="headerlink" href="#perkenalan" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Data dibagi menjadi 3 yaitu <em>supervised</em>, <em>unsupervised</em>, <em>reinforcement</em> learning</p></li>
+<li><p>Ilmuwan AI Yann Lecun memperkenalkan <em>cake analogy</em></p></li>
+<li><p>Tipe hasil data berjenis <em>continue</em> dan <em>discrete</em></p></li>
+</ul>
+<section id="data-kontinyu">
+<h4>Data Kontinyu<a class="headerlink" href="#data-kontinyu" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Data yang dapat diukur jaraknya</p></li>
+<li><p>Data yang memiliki jangka atau interval</p></li>
+<li><p>Contoh kasus “Prediksi harga rumah”</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Hadil model memprediksi jangka hargan <span class="math notranslate nohighlight">\( Rp.499.999.000 \ ∼ \ Rp. 500.100.000 \)</span>,</p></li>
+<li><p>padahal harga seharusnya adalah Rp. 500.000.000. Perbedaan ini tak jadi masalah sebab hasil prediksi dalam regresi linear akan berada dalam range bilangan numerik tertentu yang mendekati nilai seharusnya.</p></li>
+</ul>
+</section>
+<section id="data-diskrit">
+<h4>Data Diskrit<a class="headerlink" href="#data-diskrit" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Data yang dapat dihitung</p></li>
+<li><p>Data yang memiliki nilai berbeda dari perhitungan</p></li>
+<li><p>Contoh kasus “Penentuan E-mail apakah termasuk spam atau tidak”</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Apakah email dapat diklasifikasikan sebagai <em>spam</em> atau bukan <em>spam</em>?</p></li>
+<li><p>Email tidak memiliki kontinuitas antara <em>email</em> spam dan bukan <em>spam</em>.</p></li>
+<li><p>Email <em>spam</em> tidak sama dengan bukan <em>spam</em></p></li>
+<li><p>Email tidak memiliki kategori antara <em>email spam</em> dan bukan <em>spam</em>.</p></li>
+</ul>
+</section>
+<section id="cake-analogy">
+<h4>Cake Analogy<a class="headerlink" href="#cake-analogy" title="Permalink to this headline">#</a></h4>
+<blockquote>
+<div><p>“If intelligence is a cake, the bulk of the cake is unsupervised learning, the icing on the cake is supervised learning, and the cherry on the cake is reinforcement learning (RL).”</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Jika sistem kecerdasan adalah sebuah kue</p></li>
+<li><p>Unsupervised Learning adalah kuenya</p></li>
+<li><p>Supervised Learning adalah lapisan gula pada kue</p></li>
+<li><p>Reinforcement Learning adalah buah cherry pada kue</p></li>
+</ul>
+<figure class="align-default" id="here-is-p2-figure-1-https-www-dicoding-com-my-fig-ref">
+<img alt="../_images/cake_analogy.jpg" src="../_images/cake_analogy.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Cake Analogy</span><a class="headerlink" href="#here-is-p2-figure-1-https-www-dicoding-com-my-fig-ref" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Unsupervised Learning <span class="math notranslate nohighlight">\( 100.000 ∼ 1000.000 \)</span> lebih banyak dari Supervised Learning</p></li>
+<li><p>Supervised Learning <span class="math notranslate nohighlight">\( 1.000 ∼ 10.000 \)</span> lebih banyak dari Reinforcement Learning</p></li>
+<li><p>Reinforcement Learning <span class="math notranslate nohighlight">\( 10 ∼ 100 \)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="supervised">
+<h3>Supervised 🧮💻<a class="headerlink" href="#supervised" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Supervised adalah data yang memiliki label</p></li>
+<li><p>Label berfungsi untuk mengenali sebuah data</p></li>
+<li><p>Label membantu proses klasifikasi beberapa data`</p></li>
+</ul>
+<figure class="align-default" id="here-is-p2-figure-2-https-www-dicoding-com-my-fig-ref">
+<img alt="../_images/what_is_label.jpeg" src="../_images/what_is_label.jpeg" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Label Data</span><a class="headerlink" href="#here-is-p2-figure-2-https-www-dicoding-com-my-fig-ref" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="algoritma-supervised-learning">
+<h4>Algoritma supervised learning<a class="headerlink" href="#algoritma-supervised-learning" title="Permalink to this headline">#</a></h4>
+<section id="linear-regression">
+<h5>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="logistic-regression">
+<h5>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="classification">
+<h5>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="decision-trees">
+<h5>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="support-vector-machines">
+<h5>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">#</a></h5>
+</section>
+<section id="neural-networks">
+<h5>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">#</a></h5>
+</section>
+</section>
+<section id="supervised-classification">
+<h4>Supervised : Classification<a class="headerlink" href="#supervised-classification" title="Permalink to this headline">#</a></h4>
+<figure class="align-default" id="here-is-p2-figure-3-https-www-dicoding-com-my-fig-ref">
+<img alt="../_images/biner_&amp;_multiclass_clf.jpg" src="../_images/biner_&amp;_multiclass_clf.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Label Data</span><a class="headerlink" href="#here-is-p2-figure-3-https-www-dicoding-com-my-fig-ref" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="binary-classification">
+<h5>Binary Classification<a class="headerlink" href="#binary-classification" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Klasifikasi dataset yang hanya terdiri dari <strong>2 kelas</strong></p></li>
+</ul>
+<figure class="align-default" id="here-is-p2-figure-4-https-www-dicoding-com-my-fig-ref">
+<img alt="../_images/biner_&amp;_multiclass_clf.jpg" src="../_images/biner_&amp;_multiclass_clf.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Klasifikasi Biner vs Klasifikasi Multi Kelas</span><a class="headerlink" href="#here-is-p2-figure-4-https-www-dicoding-com-my-fig-ref" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="multiclass-classification">
+<h5>Multiclass Classification<a class="headerlink" href="#multiclass-classification" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Klasifikasi dataset yang memiliki lebih dari <strong>2 kelas</strong></p></li>
+<li><p>Contoh dataset bunga <em>iris</em></p></li>
+</ul>
+<figure class="align-default" id="here-is-p2-figure-5-https-www-dicoding-com-my-fig-ref">
+<img alt="../_images/biner_&amp;_multiclass_clf.jpg" src="../_images/biner_&amp;_multiclass_clf.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Klasifikasi Biner vs Klasifikasi Multi Kelas</span><a class="headerlink" href="#here-is-p2-figure-5-https-www-dicoding-com-my-fig-ref" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="decision-tree">
+<h5>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Salah satu algoritma yang <em>powerfull</em></p></li>
+<li><p>Decision tree juga merupakan komponen dasar algoritma Random Forest</p></li>
+</ul>
+<figure class="align-default" id="here-is-p2-figure-6-https-www-dicoding-com-my-fig-ref">
+<img alt="../_images/decision_tree_skema.png" src="../_images/decision_tree_skema.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Skema Decision Tree</span><a class="headerlink" href="#here-is-p2-figure-6-https-www-dicoding-com-my-fig-ref" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="latihan-sklearn-decision-tree">
+<h4>Latihan SKLearn Decision Tree 💪💻<a class="headerlink" href="#latihan-sklearn-decision-tree" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="project_1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Proyek 1 Pengenalan Data 🎯</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Muhammad Kurnia Sani<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
